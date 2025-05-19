@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -49,11 +10,10 @@
     :root { --blue:#4da8ff; --blue-dark:#1e88e5; --blue-light:#e6f0ff; --bg:#f0f8ff; }
     body { font-family:Arial,Helvetica,sans-serif; margin:0; padding:20px; background:var(--bg); color:#333; line-height:1.6; }
     /* Layout */
-    .main-layout { display: flex; width: 100%; gap: 20px; } /* Reverted to original width */
-    .content-column { width: 60%; } /* Reverted to original */
-    .instructions-column { width: 20%; padding: 0; } /* Reverted to original */
-    .ads-column { width: 20%; } /* Reverted to original */
-    .instructions-box { background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 0 5px #ccc; margin-top: 140px; } /* Aligned with h2 */
+    .main-layout { display: flex; width: 100%; gap: 20px; }
+    .content-column { width: 80%; } /* Updated to 80% for calculator */
+    .instructions-column { width: 20%; padding: 0; } /* Set to 20% for How to Use box */
+    .instructions-box { background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 0 5px #ccc; margin-top: 140px; }
     /* TAB BAR */
     .tabs { display:flex; margin-bottom:20px; flex-wrap:wrap; }
     .tab-button { flex:1 0 auto; height:50px; display:flex; align-items:center; justify-content:center; padding:0 12px; background:var(--blue); border:none; border-radius:5px 5px 0 0; color:#fff; font-weight:bold; cursor:pointer; position:relative; box-sizing:border-box; margin:2px; min-width:100px; }
@@ -86,15 +46,14 @@
     /* Footer */
     footer { margin-top: 40px; padding: 20px; text-align: center; background: #fff; border-top: 1px solid #ccc; font-size: 0.9em; color: #666; }
   </style>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EXT7XHZ87R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-EXT7XHZ87R');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXT7XHZ87R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EXT7XHZ87R');
+  </script>
 </head>
 <body>
   <div class="main-layout">
@@ -241,7 +200,7 @@
           <tr><td>Years completed</td><td><input type="number" id="yearsDone" placeholder="e.g. 5"></td></tr>
           <tr><td>Years left</td><td><input type="number" id="yearsLeft" placeholder="e.g. 20"></td></tr>
           <tr><td>Current PF balance (₹)</td><td><input type="number" id="currentPF" placeholder="e.g. 200000"></td></tr>
-          <tr><td>Annual PF interest %</td><td><input type="number" id="pfRate" value="8.25" step="0.1"></td></tr>
+          <tr><td>Annual PF interest %</td><td><input type="number" id="pfRate" value=" fetchBalance() * 0.0825" step="0.1"></td></tr>
         </table>
         <button class="action" onclick="calcPF()">Project My Benefits</button>
         <div id="pfResult"></div>
@@ -471,20 +430,14 @@
         </ol>
       </div>
     </div>
-
-    <div class="ads-column">
-      <!-- Placeholder for advertisements -->
-    </div>
   </div>
 
-  
-    <footer>
-      <p>
-        Our calculator has been extensively tested for correct functionality. However, no guarantee can be given for the results. 
-        <a href="privacy.html">Privacy Policy</a>
-      </p>
-    </footer>
-    
+  <footer>
+    <p>
+      Our calculator has been extensively tested for correct functionality. However, no guarantee can be given for the results. 
+      <a href="privacy.html">Privacy Policy</a>
+    </p>
+  </footer>
 
   <!-- SCRIPT -->
   <script type="text/javascript">
@@ -802,7 +755,7 @@
       ]);
     }
   </script>
-        <script>
+  <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="jGGdI6q3-czolU1bVXbJF";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 </body>
