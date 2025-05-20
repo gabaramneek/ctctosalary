@@ -5,36 +5,131 @@
   <meta name="description" content="Free online salary calculator for India FY 2025-26 with tax, PF, HRA, gratuity, pension & loan EMI calculations. Understand your take-home pay, deductions and loan savings.">
   <meta name="keywords" content="salary calculator India, income tax calculator 2025-26, PF calculation, HRA exemption, gratuity calculator, pension calculator, loan EMI calculator, prepayment calculator, take home salary India">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salary & Loan Calculator 2025-26 | Tax, PF, HRA, EMI Calculators</title>
+  <title>India Salary & Loan Calculator 2025-26 | Tax, PF, HRA, EMI Calculators</title>
+  
+  <!-- Bootstrap Flatly Theme from Bootswatch -->
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/flatly/bootstrap.min.css" rel="stylesheet">
+  
   <style>
-    :root { --blue:#4da8ff; --blue-dark:#1e88e5; --blue-light:#e6f0ff; --bg:#f0f8ff; }
-    body { font-family:Arial,Helvetica,sans-serif; margin:0; padding:20px; background:var(--bg); color:#333; line-height:1.6; }
+    :root { 
+      --blue: #2c3e50; 
+      --blue-dark: #1a252f; 
+      --blue-light: #ecf0f1; 
+      --bg: #f8f9fa; 
+    }
+    body { 
+      font-family: 'Lato', Arial, Helvetica, sans-serif; 
+      margin:0; 
+      padding:20px; 
+      background:var(--bg); 
+      color:#333; 
+      line-height:1.6; 
+    }
     /* Layout */
     .main-layout { display: flex; width: 100%; gap: 20px; }
     .content-column { width: 80%; } /* Updated to 80% for calculator */
     .instructions-column { width: 20%; padding: 0; } /* Set to 20% for How to Use box */
-    .instructions-box { background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 0 5px #ccc; margin-top: 140px; }
+    .instructions-box { background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); margin-top: 140px; }
     /* TAB BAR */
     .tabs { display:flex; margin-bottom:20px; flex-wrap:wrap; }
-    .tab-button { flex:1 0 auto; height:50px; display:flex; align-items:center; justify-content:center; padding:0 12px; background:var(--blue); border:none; border-radius:5px 5px 0 0; color:#fff; font-weight:bold; cursor:pointer; position:relative; box-sizing:border-box; margin:2px; min-width:100px; }
-    .tab-button.active { background:#fff; color:var(--blue); border:2px solid var(--blue); border-bottom:none; }
+    .tab-button { 
+      flex:1 0 auto; 
+      height:50px; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      padding:0 12px; 
+      background:var(--blue); 
+      border:none; 
+      border-radius:5px 5px 0 0; 
+      color:#fff; 
+      font-weight:bold; 
+      cursor:pointer; 
+      position:relative; 
+      box-sizing:border-box; 
+      margin:2px; 
+      min-width:100px; 
+      transition: all 0.3s ease;
+    }
+    .tab-button:hover {
+      background: var(--blue-dark);
+    }
+    .tab-button.active { 
+      background:#fff; 
+      color:var(--blue); 
+      border:2px solid var(--blue); 
+      border-bottom:none; 
+    }
     /* Dropdown */
-    .dropdown-content { display:none; flex-direction:column; position:absolute; top:100%; left:0; width:100%; background:#fff; border:2px solid var(--blue); border-top:none; border-radius:0 0 5px 5px; box-shadow:0 4px 6px rgba(0,0,0,.08); z-index:10; }
+    .dropdown-content { 
+      display:none; 
+      flex-direction:column; 
+      position:absolute; 
+      top:100%; 
+      left:0; 
+      width:100%; 
+      background:#fff; 
+      border:2px solid var(--blue); 
+      border-top:none; 
+      border-radius:0 0 5px 5px; 
+      box-shadow:0 4px 6px rgba(0,0,0,.08); 
+      z-index:10; 
+    }
     .dropdown:hover .dropdown-content { display:flex; }
-    .dropdown-content button { padding:10px; background:none; border:none; text-align:left; cursor:pointer; color:#000; }
-    .dropdown-content button:hover { background:var(--blue-light); }
+    .dropdown-content button { 
+      padding:10px; 
+      background:none; 
+      border:none; 
+      text-align:left; 
+      cursor:pointer; 
+      color:#000; 
+      transition: all 0.2s ease;
+    }
+    .dropdown-content button:hover { 
+      background:var(--blue-light); 
+    }
     /* PANELS */
-    .container { display:none; background:#fff; padding:15px; border-radius:0 5px 5px 5px; box-shadow:0 0 5px #ccc; margin-bottom:20px; }
+    .container { 
+      display:none; 
+      background:#fff; 
+      padding:15px; 
+      border-radius:0 5px 5px 5px; 
+      box-shadow:0 0 5px rgba(0,0,0,0.1); 
+      margin-bottom:20px; 
+      border: 1px solid #dee2e6;
+    }
     .container.active { display:block; }
     /* Tables / Inputs */
     table { width:100%; border-collapse:collapse; margin:15px 0; }
-    th, td { border:1px solid #ccc; padding:8px; text-align:left; }
+    th, td { border:1px solid #dee2e6; padding:8px; text-align:left; }
     th { background:var(--blue-light); }
-    input, select { width:230px; padding:5px; }
-    button.action { margin-top:20px; padding:10px 15px; background:var(--blue); color:#fff; border:none; border-radius:4px; cursor:pointer; }
-    button.action:hover { background:var(--blue-dark); }
+    input, select { 
+      width:230px; 
+      padding:6px 12px; 
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+    }
+    button.action { 
+      margin-top:20px; 
+      padding:10px 15px; 
+      background:var(--blue); 
+      color:#fff; 
+      border:none; 
+      border-radius:4px; 
+      cursor:pointer; 
+      transition: all 0.3s ease;
+    }
+    button.action:hover { 
+      background:var(--blue-dark); 
+    }
     /* Info sections */
-    .info-box { background:#f9f9f9; padding:15px; border-radius:5px; margin-top:30px; border-left:4px solid var(--blue); }
+    .info-box { 
+      background:#f9f9f9; 
+      padding:15px; 
+      border-radius:5px; 
+      margin-top:30px; 
+      border-left:4px solid var(--blue); 
+    }
     .info-box h3 { margin-top:0; color:var(--blue-dark); }
     .info-box ul { padding-left:20px; }
     .info-box li { margin-bottom:8px; }
@@ -44,7 +139,82 @@
     .instructions-box ul { padding-left:20px; }
     .instructions-box li { margin-bottom:8px; }
     /* Footer */
-    footer { margin-top: 40px; padding: 20px; text-align: center; background: #fff; border-top: 1px solid #ccc; font-size: 0.9em; color: #666; }
+    footer { 
+      margin-top: 40px; 
+      padding: 20px; 
+      text-align: center; 
+      background: #fff; 
+      border-top: 1px solid #dee2e6; 
+      font-size: 0.9em; 
+      color: #666; 
+    }
+    
+    /* Adjustments for Flatly theme */
+    h1, h2, h3, h4, h5, h6 {
+      color: #2c3e50;
+    }
+    a {
+      color: #18bc9c;
+    }
+    a:hover {
+      color: #128f76;
+    }
+    @media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .content-column,
+  .instructions-column {
+    width: 100% !important;
+  }
+
+  .instructions-box {
+    margin-top: 20px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tab-button {
+    width: 100%;
+    min-width: unset;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .dropdown-content {
+    position: relative;
+    border: 1px solid var(--blue);
+    border-radius: 0 0 5px 5px;
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  table,
+  .table {
+    font-size: 0.9rem;
+  }
+
+  input,
+  select {
+    width: 100% !important;
+  }
+
+  .info-box {
+    font-size: 0.95rem;
+  }
+
+  button.action {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXT7XHZ87R"></script>
