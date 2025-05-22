@@ -5,161 +5,237 @@
   <meta name="description" content="Free online salary calculator for India FY 2025-26 with tax, PF, HRA, gratuity, pension & loan EMI calculations. Understand your take-home pay, deductions and loan savings.">
   <meta name="keywords" content="salary calculator India, income tax calculator 2025-26, PF calculation, HRA exemption, gratuity calculator, pension calculator, loan EMI calculator, prepayment calculator, take home salary India">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CTC to Salary Calculator 2025-26 | Tax, PF, HRA, EMI Calculators</title>
-  
-  <!-- Bootstrap Flatly Theme from Bootswatch -->
-  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/flatly/bootstrap.min.css" rel="stylesheet">
-  
+  <title>Salary & Loan Calculator 2025-26 | Tax, PF, HRA, EMI Calculators</title>
+  <link rel="icon" type="image/png" href="favicon-new2.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
   <style>
-    :root { 
-      --blue: #2c3e50; 
-      --blue-dark: #1a252f; 
-      --blue-light: #ecf0f1; 
-      --bg: #f8f9fa; 
+    /* Your existing CSS variables, slightly adjusted for theme consistency if needed */
+    :root {
+      --blue: #2c3e50; /* Adjust to match Flatly's primary color */
+      --blue-dark: #233140; /* Darker shade */
+      --blue-light: #ecf0f1; /* Lighter shade/background */
+      --bg: #f8f8f8; /* A light grey background, common in Flatly */
+      --success: #28a745; /* Bootstrap success color */
+      --success-dark: #1e7e34;
+      --success-light: #d4edda;
     }
-    body { 
-      font-family: 'Lato', Arial, Helvetica, sans-serif; 
-      margin:0; 
-      padding:20px; 
-      background:var(--bg); 
-      color:#333; 
-      line-height:1.6; 
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: var(--bg);
+      color: #333;
+      line-height: 1.6;
     }
+
     /* Layout */
-    .main-layout { display: flex; width: 100%; gap: 20px; }
-    .content-column { width: 80%; } /* Updated to 80% for calculator */
-    .instructions-column { width: 20%; padding: 0; } /* Set to 20% for How to Use box */
-    .instructions-box { background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); margin-top: 140px; }
+    .main-layout {
+      display: flex;
+      width: 100%;
+      gap: 20px;
+    }
+    .content-column {
+      width: 80%; /* Updated to 80% for calculator */
+    }
+    .instructions-column {
+      width: 20%;
+      padding: 0;
+    }
+    .instructions-box {
+      background: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      margin-top: 140px; /* Keep this to align with the main content */
+    }
+
     /* TAB BAR */
-    .tabs { display:flex; margin-bottom:20px; flex-wrap:wrap; }
-    .tab-button { 
-      flex:1 0 auto; 
-      height:50px; 
-      display:flex; 
-      align-items:center; 
-      justify-content:center; 
-      padding:0 12px; 
-      background:var(--blue); 
-      border:none; 
-      border-radius:5px 5px 0 0; 
-      color:#fff; 
-      font-weight:bold; 
-      cursor:pointer; 
-      position:relative; 
-      box-sizing:border-box; 
-      margin:2px; 
-      min-width:100px; 
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tab-button {
+      flex: 1 0 auto;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      background: var(--blue-light); /* Light background for inactive tabs */
+      border: none;
+      border-radius: 5px 5px 0 0;
+      color: var(--blue-dark); /* Darker text for inactive */
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      box-sizing: border-box;
+      margin: 2px;
+      min-width: 100px;
       transition: all 0.3s ease;
     }
-    .tab-button:hover {
-      background: var(--blue-dark);
+    .tab-button.active {
+      background: #fff;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+      border-bottom: none;
+      z-index: 1; /* Bring active tab to front */
     }
-    .tab-button.active { 
-      background:#fff; 
-      color:var(--blue); 
-      border:2px solid var(--blue); 
-      border-bottom:none; 
+    .tab-button:hover:not(.active) {
+      background: var(--blue-light); /* Hover effect */
+      color: var(--blue);
     }
+
     /* Dropdown */
-    .dropdown-content { 
-      display:none; 
-      flex-direction:column; 
-      position:absolute; 
-      top:100%; 
-      left:0; 
-      width:100%; 
-      background:#fff; 
-      border:2px solid var(--blue); 
-      border-top:none; 
-      border-radius:0 0 5px 5px; 
-      box-shadow:0 4px 6px rgba(0,0,0,.08); 
-      z-index:10; 
+    .dropdown-content {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border: 2px solid var(--blue);
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+      box-shadow: 0 4px 6px rgba(0,0,0,.08);
+      z-index: 10;
     }
-    .dropdown:hover .dropdown-content { display:flex; }
-    .dropdown-content button { 
-      padding:10px; 
-      background:none; 
-      border:none; 
-      text-align:left; 
-      cursor:pointer; 
-      color:#000; 
-      transition: all 0.2s ease;
+    .dropdown:hover .dropdown-content {
+      display: flex;
     }
-    .dropdown-content button:hover { 
-      background:var(--blue-light); 
+    .dropdown-content button {
+      padding: 10px;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      color: #000;
+      transition: background-color 0.2s ease;
     }
+    .dropdown-content button:hover {
+      background: var(--blue-light);
+    }
+
     /* PANELS */
-    .container { 
-      display:none; 
-      background:#fff; 
-      padding:15px; 
-      border-radius:0 5px 5px 5px; 
-      box-shadow:0 0 5px rgba(0,0,0,0.1); 
-      margin-bottom:20px; 
-      border: 1px solid #dee2e6;
+    .container {
+      display: none;
+      background: #fff;
+      padding: 15px;
+      border-radius: 0 5px 5px 5px;
+      box-shadow: 0 0 5px #ccc;
+      margin-bottom: 20px;
+      border: 1px solid #dee2e6; /* Add a subtle border */
     }
-    .container.active { display:block; }
+    .container.active {
+      display: block;
+    }
+
     /* Tables / Inputs */
-    table { width:100%; border-collapse:collapse; margin:15px 0; }
-    th, td { border:1px solid #dee2e6; padding:8px; text-align:left; }
-    th { background:var(--blue-light); }
-    input, select { 
-      width:230px; 
-      padding:6px 12px; 
-      border: 1px solid #ced4da;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      border: 1px solid #dee2e6; /* Bootstrap-like table border */
+    }
+    th, td {
+      border: 1px solid #dee2e6; /* Bootstrap table cell border */
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: var(--blue-light);
+      color: var(--blue-dark);
+    }
+    input, select {
+      width: 230px;
+      padding: 5px;
+      border: 1px solid #ced4da; /* Bootstrap form control border */
+      border-radius: 0.25rem; /* Bootstrap form control border-radius */
+    }
+    button.action {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: #57f2d8; /* New button background color */
+      color: #000000; /* New button text color for better contrast */
+      border: none;
       border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-    button.action { 
-      margin-top:20px; 
-      padding:10px 15px; 
-      background:var(--blue); 
-      color:#fff; 
-      border:none; 
-      border-radius:4px; 
-      cursor:pointer; 
-      transition: all 0.3s ease;
-    }
-    button.action:hover { 
-      background:var(--blue-dark); 
-    }
-    /* Info sections */
-    .info-box { 
-      background:#f9f9f9; 
-      padding:15px; 
-      border-radius:5px; 
-      margin-top:30px; 
-      border-left:4px solid var(--blue); 
-    }
-    .info-box h3 { margin-top:0; color:var(--blue-dark); }
-    .info-box ul { padding-left:20px; }
-    .info-box li { margin-bottom:8px; }
-    .emi-breakup { margin-top:20px; overflow-x:auto; }
-    /* Instructions */
-    .instructions-box h3 { margin-top:0; color:var(--blue-dark); }
-    .instructions-box ul { padding-left:20px; }
-    .instructions-box li { margin-bottom:8px; }
-    /* Footer */
-    footer { 
-      margin-top: 40px; 
-      padding: 20px; 
-      text-align: center; 
-      background: #fff; 
-      border-top: 1px solid #dee2e6; 
-      font-size: 0.9em; 
-      color: #666; 
+    button.action:hover {
+      background: #3cc8b4; /* Darker shade for hover effect */
     }
     
-    /* Adjustments for Flatly theme */
-    h1, h2, h3, h4, h5, h6 {
-      color: #2c3e50;
+    /* Fix dropdown text overflow */
+.dropdown-content {
+  white-space: normal !important;
+  word-wrap: break-word;
+  width: max-content;
+  max-width: 250px;
+  overflow-wrap: break-word;
+}
+
+
+    /* Info sections */
+  .info-box {
+      background: #E6F8F5; /* New info box background color */
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 30px;
+      border-left: 4px solid #bcf7ed; /* Example: darker teal border */
+      color: #000000; /* Set default text color for info-box to black */
     }
-    a {
-      color: #18bc9c;
+    .info-box h3 {
+      margin-top: 0;
+      color: #000000; /* Set h3 text color in info-box to black */
     }
-    a:hover {
-      color: #128f76;
+    .info-box ul {
+      padding-left: 20px;
     }
-    @media (max-width: 768px) {
+    .info-box li {
+      margin-bottom: 8px;
+    }
+    .info-box p, .info-box ul, .info-box li { /* Ensure paragraphs and list items are also black */
+        color: #000000;
+    }
+    .emi-breakup {
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+
+    /* Instructions */
+    .instructions-box h3 {
+      margin-top: 0;
+      color: var(--blue-dark);
+    }
+    .instructions-box ul {
+      padding-left: 20px;
+    }
+    .instructions-box li {
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    /* Override Bootstrap defaults for specific elements if necessary */
+    h1 {
+      color: var(--blue-dark); /* Match heading color to theme */
+    }
+@media (max-width: 768px) {
   .main-layout {
     flex-direction: column;
   }
@@ -214,9 +290,7 @@
     font-size: 1rem;
   }
 }
-
   </style>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXT7XHZ87R"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -228,43 +302,43 @@
 <body>
   <div class="main-layout">
     <div class="content-column">
-      <h1>
+       <h1>
     <img src="logonew2.png" alt="CTC to Salary Calculator" style="height: 60px;">   
   </h1>
-      <p>Calculate your take-home salary, Income tax, PF contributions, HRA exemption, Gratuity, Pension and Loan EMIs as per latest Indian tax laws and financial regulations.</p>
+      <p class="lead">Calculate your take-home salary, Income tax, PF contributions, HRA exemption, Gratuity, Pension and Loan EMIs as per latest Indian tax laws and financial regulations.</p>
 
-      <!-- TAB BAR -->
-      <div class="tabs">
+      <div class="tabs nav nav-tabs">
         <div class="tab-button dropdown active" id="salaryDropdown">Salary ▾
           <div class="dropdown-content">
-            <button onclick="showCalc('salaryEmployee')">Salary calculator 2025‑26</button>
-            <button onclick="showCalc('salaryEmployer')">Salary for employers</button>
+            <button class="dropdown-item" onclick="showCalc('salaryEmployee')">Salary calculator 2025‑26</button>
+            <button class="dropdown-item" onclick="showCalc('salaryEmployer')">Salary for employers</button>
           </div>
         </div>
-        <button class="tab-button" id="taxTab" onclick="showCalc('taxCalc')">Income Tax</button>
-        <button class="tab-button" id="pfTab" onclick="showCalc('pfCalc')">PF / Gratuity</button>
-        <button class="tab-button" id="hraTab" onclick="showCalc('hraCalc')">HRA Exemption</button>
-        <button class="tab-button" id="pensionTab" onclick="showCalc('pension')">Pension</button>
+        <button class="tab-button nav-link" id="taxTab" onclick="showCalc('taxCalc')">Income Tax</button>
+        <button class="tab-button nav-link" id="pfTab" onclick="showCalc('pfCalc')">PF / Gratuity</button>
+        <button class="tab-button nav-link" id="hraTab" onclick="showCalc('hraCalc')">HRA Exemption</button>
+        <button class="tab-button nav-link" id="pensionTab" onclick="showCalc('pension')">Pension</button>
         <div class="tab-button dropdown" id="loanDropdown">Loan ▾
           <div class="dropdown-content">
-            <button onclick="showCalc('emiCalc')">EMI Calculator</button>
-            <button onclick="showCalc('prepaymentCalc')">Prepayment Calculator</button>
+            <button class="dropdown-item" onclick="showCalc('emiCalc')">EMI Calculator</button>
+            <button class="dropdown-item" onclick="showCalc('prepaymentCalc')">Prepayment Calculator</button>
           </div>
         </div>
       </div>
 
-      <!-- Salary Employee Panel (default) -->
       <div id="salaryEmployee" class="container active">
-        <h2>Salary Calculator for 2025‑26</h2>
-        <table>
-          <tr><td>Annual CTC (₹)</td><td><input type="number" id="ctc" placeholder="e.g. 800000"></td></tr>
-          <tr><td>Basic % of CTC</td><td><input type="number" id="basicPercent" value="40" min="20" max="70"></td></tr>
-        </table>
-        <button class="action" onclick="calcSalary()">Calculate My Salary</button>
-        <div id="salResult"></div>
+        <h2 class="mb-3">Salary Calculator for Employees 2025‑26</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr><td>Annual CTC (₹)</td><td><input type="number" id="ctc" placeholder="e.g. 800000" class="form-control"></td></tr>
+            <tr><td>Basic % of CTC</td><td><input type="number" id="basicPercent" value="40" min="20" max="70" class="form-control"></td></tr>
+          </table>
+        </div>
+        <button class="action btn btn-success" onclick="calcSalary()">Calculate My Salary</button>
+        <div id="salResult" class="mt-4"></div>
 
-        <div class="info-box">
-          <h3>Understanding Salary Structure in India</h3>
+        <div class="info-box alert alert-success mt-4">
+          <h3 class="alert-heading">Understanding Salary Structure in India</h3>
           <p>Your Cost to Company (CTC) in India consists of various components that affect your take-home salary and tax liability. Here's what you need to know:</p>
           
           <h4>Key Salary Components</h4>
@@ -285,18 +359,19 @@
         </div>
       </div>
 
-      <!-- Salary Employer Panel -->
       <div id="salaryEmployer" class="container">
-        <h2>Employer Salary Calculator 2025‑26</h2>
-        <table>
-          <tr><td>Desired Net Monthly Take‑Home (₹)</td><td><input type="number" id="desiredNet" placeholder="e.g. 50000"></td></tr>
-          <tr><td>Basic % of Gross</td><td><input type="number" id="empBasicPercent" value="40" min="20" max="70"></td></tr>
-        </table>
-        <button class="action" onclick="calcEmployer()">Calculate CTC</button>
-        <div id="empResult"></div>
+        <h2 class="mb-3">Employer Salary Calculator 2025‑26</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr><td>Desired Net Monthly Take‑Home (₹)</td><td><input type="number" id="desiredNet" placeholder="e.g. 50000" class="form-control"></td></tr>
+            <tr><td>Basic % of Gross</td><td><input type="number" id="empBasicPercent" value="40" min="20" max="70" class="form-control"></td></tr>
+          </table>
+        </div>
+        <button class="action btn btn-success" onclick="calcEmployer()">Calculate CTC</button>
+        <div id="empResult" class="mt-4"></div>
 
-        <div class="info-box">
-          <h3>Employer Compliance Requirements in India</h3>
+        <div class="info-box alert alert-success mt-4">
+          <h3 class="alert-heading">Employer Compliance Requirements in India</h3>
           <p>When structuring salaries in India, employers must account for several statutory components:</p>
           
           <h4>Mandatory Contributions</h4>
@@ -318,25 +393,26 @@
         </div>
       </div>
 
-      <!-- Income Tax Panel -->
       <div id="taxCalc" class="container">
-        <h2>Income‑Tax calculator (FY 2025‑26)</h2>
-        <table>
-          <tr><td>Total Gross Income (₹)</td><td><input type="number" id="grossInc" placeholder="e.g. 1200000"></td></tr>
-          <tr><td>80C Investments ≤ 1.5 L</td><td><input type="number" id="ded80c" placeholder="e.g. 150000"></td></tr>
-          <tr><td>NPS 80CCD(1B) ≤ 50 k</td><td><input type="number" id="dedNps" placeholder="e.g. 50000"></td></tr>
-          <tr><td>80D Health Insurance</td><td><input type="number" id="ded80d" placeholder="e.g. 25000"></td></tr>
-          <tr><td>Home‑loan interest 24b ≤ 2 L</td><td><input type="number" id="ded24b" placeholder="e.g. 200000"></td></tr>
-          <tr><td>Education‑loan 80E</td><td><input type="number" id="ded80e" placeholder="e.g. 50000"></td></tr>
-          <tr><td>Donations 80G</td><td><input type="number" id="ded80g" placeholder="e.g. 10000"></td></tr>
-          <tr><td>Other deductions</td><td><input type="number" id="dedOther" placeholder="e.g. 20000"></td></tr>
-          <tr><td>Tax Regime</td><td><select id="taxRegime"><option value="new">New</option><option value="old">Old</option></select></td></tr>
-        </table>
-        <button class="action" onclick="calcIncomeTax()">Compute Tax</button>
-        <div id="taxResult"></div>
+        <h2 class="mb-3">Income‑Tax calculator (FY 2025‑26)</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr><td>Total Gross Income (₹)</td><td><input type="number" id="grossInc" placeholder="e.g. 1200000" class="form-control"></td></tr>
+            <tr><td>80C Investments ≤ 1.5 L</td><td><input type="number" id="ded80c" placeholder="e.g. 150000" class="form-control"></td></tr>
+            <tr><td>NPS 80CCD(1B) ≤ 50 k</td><td><input type="number" id="dedNps" placeholder="e.g. 50000" class="form-control"></td></tr>
+            <tr><td>80D Health Insurance</td><td><input type="number" id="ded80d" placeholder="e.g. 25000" class="form-control"></td></tr>
+            <tr><td>Home‑loan interest 24b ≤ 2 L</td><td><input type="number" id="ded24b" placeholder="e.g. 200000" class="form-control"></td></tr>
+            <tr><td>Education‑loan 80E</td><td><input type="number" id="ded80e" placeholder="e.g. 50000" class="form-control"></td></tr>
+            <tr><td>Donations 80G</td><td><input type="number" id="ded80g" placeholder="e.g. 10000" class="form-control"></td></tr>
+            <tr><td>Other deductions</td><td><input type="number" id="dedOther" placeholder="e.g. 20000" class="form-control"></td></tr>
+            <tr><td>Tax Regime</td><td><select id="taxRegime" class="form-select"><option value="new">New</option><option value="old">Old</option></select></td></tr>
+          </table>
+        </div>
+        <button class="action btn btn-success" onclick="calcIncomeTax()">Compute Tax</button>
+        <div id="taxResult" class="mt-4"></div>
 
-        <div class="info-box">
-          <h3>Income Tax Slabs and Rules FY 2025-26</h3>
+        <div class="info-box alert alert-success mt-4">
+          <h3 class="alert-heading">Income Tax Slabs and Rules FY 2025-26</h3>
           <p>India offers two tax regimes with different deduction options. Choose wisely based on your investments and expenses:</p>
           
           <h4>New Tax Regime (Default)</h4>
@@ -364,21 +440,22 @@
         </div>
       </div>
 
-      <!-- PF/Gratuity Panel -->
       <div id="pfCalc" class="container">
-        <h2>EPF & Gratuity Calculator 2025-26</h2>
-        <table>
-          <tr><td>Current Monthly Basic (₹)</td><td><input type="number" id="pfBasic" placeholder="e.g. 30000"></td></tr>
-          <tr><td>Years completed</td><td><input type="number" id="yearsDone" placeholder="e.g. 5"></td></tr>
-          <tr><td>Years left</td><td><input type="number" id="yearsLeft" placeholder="e.g. 20"></td></tr>
-          <tr><td>Current PF balance (₹)</td><td><input type="number" id="currentPF" placeholder="e.g. 200000"></td></tr>
-          <tr><td>Annual PF interest %</td><td><input type="number" id="pfRate" value=" fetchBalance() * 0.0825" step="0.1"></td></tr>
-        </table>
-        <button class="action" onclick="calcPF()">Project My Benefits</button>
-        <div id="pfResult"></div>
+        <h2 class="mb-3">EPF & Gratuity Calculator 2025-26</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr><td>Current Monthly Basic (₹)</td><td><input type="number" id="pfBasic" placeholder="e.g. 30000" class="form-control"></td></tr>
+            <tr><td>Years completed</td><td><input type="number" id="yearsDone" placeholder="e.g. 5" class="form-control"></td></tr>
+            <tr><td>Years left</td><td><input type="number" id="yearsLeft" placeholder="e.g. 20" class="form-control"></td></tr>
+            <tr><td>Current PF balance (₹)</td><td><input type="number" id="currentPF" placeholder="e.g. 200000" class="form-control"></td></tr>
+            <tr><td>Annual PF interest %</td><td><input type="number" id="pfRate" value=" fetchBalance() * 0.0825" step="0.1" class="form-control"></td></tr>
+          </table>
+        </div>
+        <button class="action btn btn-success" onclick="calcPF()">Project My Benefits</button>
+        <div id="pfResult" class="mt-4"></div>
 
-        <div class="info-box">
-          <h3>EPF and Gratuity Rules in India</h3>
+        <div class="info-box alert alert-success mt-4">
+          <h3 class="alert-heading">EPF and Gratuity Rules in India</h3>
           <p>Your employment benefits include valuable long-term savings through EPF and gratuity. Here's how they work:</p>
           
           <h4>Employee Provident Fund (EPF)</h4>
@@ -406,20 +483,21 @@
         </div>
       </div>
 
-      <!-- HRA Panel -->
       <div id="hraCalc" class="container">
-        <h2>HRA Exemption Calculator (Old Regime)</h2>
-        <table>
-          <tr><td>Monthly Basic Salary (₹)</td><td><input type="number" id="hraBasic" placeholder="e.g. 30000"></td></tr>
-          <tr><td>Monthly HRA received (₹)</td><td><input type="number" id="hraRec" placeholder="e.g. 15000"></td></tr>
-          <tr><td>Monthly Rent paid (₹)</td><td><input type="number" id="rentPaid" placeholder="e.g. 12000"></td></tr>
-          <tr><td>Metro city?</td><td><select id="isMetro"><option value="yes">Yes (Delhi/Mumbai/Kolkata/Chennai)</option><option value="no" selected>No</option></select></td></tr>
-        </table>
-        <button class="action" onclick="calcHRA()">Calculate HRA Exemption</button>
-        <div id="hraResult"></div>
+        <h2 class="mb-3">HRA Exemption Calculator (Old Regime)</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr><td>Monthly Basic Salary (₹)</td><td><input type="number" id="hraBasic" placeholder="e.g. 30000" class="form-control"></td></tr>
+            <tr><td>Monthly HRA received (₹)</td><td><input type="number" id="hraRec" placeholder="e.g. 15000" class="form-control"></td></tr>
+            <tr><td>Monthly Rent paid (₹)</td><td><input type="number" id="rentPaid" placeholder="e.g. 12000" class="form-control"></td></tr>
+            <tr><td>Metro city?</td><td><select id="isMetro" class="form-select"><option value="yes">Yes (Delhi/Mumbai/Kolkata/Chennai)</option><option value="no" selected>No</option></select></td></tr>
+          </table>
+        </div>
+        <button class="action btn btn-success" onclick="calcHRA()">Calculate HRA Exemption</button>
+        <div id="hraResult" class="mt-4"></div>
 
-        <div class="info-box">
-          <h3>HRA Exemption Rules and Tax Benefits</h3>
+        <div class="info-box alert alert-success mt-4">
+          <h3 class="alert-heading">HRA Exemption Rules and Tax Benefits</h3>
           <p>House Rent Allowance (HRA) provides significant tax savings for salaried individuals in India. Here's everything you need to know:</p>
           
           <h4>HRA Exemption Calculation</h4>
@@ -449,19 +527,20 @@
         </div>
       </div>
 
-      <!-- Pension Panel -->
       <div id="pension" class="container">
-        <h2>Pension Calculator for Employees</h2>
-        <table>
-          <tr><td>Last Drawn Basic (₹)</td><td><input type="number" id="lastBasic" placeholder="e.g. 50000"></td></tr>
-          <tr><td>Total Years of Service</td><td><input type="number" id="serviceYears" placeholder="e.g. 30"></td></tr>
-          <tr><td>Pension Factor</td><td><input type="number" id="pensFactor" value="1" step="0.01"></td></tr>
-        </table>
-        <button class="action" onclick="calcPension()">Calculate My Pension</button>
-        <div id="pensResult"></div>
+        <h2 class="mb-3">Pension Calculator for Employees</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr><td>Last Drawn Basic (₹)</td><td><input type="number" id="lastBasic" placeholder="e.g. 50000" class="form-control"></td></tr>
+            <tr><td>Total Years of Service</td><td><input type="number" id="serviceYears" placeholder="e.g. 30" class="form-control"></td></tr>
+            <tr><td>Pension Factor</td><td><input type="number" id="pensFactor" value="1" step="0.01" class="form-control"></td></tr>
+          </table>
+        </div>
+        <button class="action btn btn-success" onclick="calcPension()">Calculate My Pension</button>
+        <div id="pensResult" class="mt-4"></div>
 
-        <div class="info-box">
-          <h3>Pension Options for Indian Employees</h3>
+        <div class="info-box alert alert-success mt-4">
+          <h3 class="alert-heading">Pension Options for Indian Employees</h3>
           <p>Employees in India can benefit from multiple pension schemes. Understand your options for retirement planning:</p>
           
           <h4>Employee Pension Scheme (EPS)</h4>
@@ -492,20 +571,21 @@
         </div>
       </div>
 
-      <!-- EMI Calculator Panel -->
       <div id="emiCalc" class="container">
-        <h2>Loan EMI Calculator</h2>
-        <table>
-          <tr><td>Loan Amount (₹)</td><td><input type="number" id="loanAmount" placeholder="e.g. 5000000"></td></tr>
-          <tr><td>Interest Rate (% p.a.)</td><td><input type="number" id="interestRate" step="0.01" placeholder="e.g. 8.5"></td></tr>
-          <tr><td>Loan Tenure (years)</td><td><input type="number" id="loanTenure" placeholder="e.g. 20"></td></tr>
-        </table>
-        <button class="action" onclick="calculateEMI()">Calculate EMI</button>
-        <div id="emiResult"></div>
-        <div id="emiBreakup" class="emi-breakup"></div>
+        <h2 class="mb-3">Loan EMI Calculator</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr><td>Loan Amount (₹)</td><td><input type="number" id="loanAmount" placeholder="e.g. 5000000" class="form-control"></td></tr>
+            <tr><td>Interest Rate (% p.a.)</td><td><input type="number" id="interestRate" step="0.01" placeholder="e.g. 8.5" class="form-control"></td></tr>
+            <tr><td>Loan Tenure (years)</td><td><input type="number" id="loanTenure" placeholder="e.g. 20" class="form-control"></td></tr>
+          </table>
+        </div>
+        <button class="action btn btn-success" onclick="calculateEMI()">Calculate EMI</button>
+        <div id="emiResult" class="mt-4"></div>
+        <div id="emiBreakup" class="emi-breakup table-responsive"></div>
 
-        <div class="info-box">
-          <h3>Understanding Loan EMIs in India</h3>
+        <div class="info-box alert alert-success mt-4">
+          <h3 class="alert-heading">Understanding Loan EMIs in India</h3>
           <p>Equated Monthly Installments (EMIs) are fixed payments made by borrowers to lenders at specified dates. Here's how they work:</p>
           
           <h4>How EMIs Are Calculated</h4>
@@ -538,26 +618,27 @@
         </div>
       </div>
 
-      <!-- Prepayment Calculator Panel -->
       <div id="prepaymentCalc" class="container">
-        <h2>Loan Prepayment Calculator</h2>
-        <table>
-          <tr><td>Current Loan Balance (₹)</td><td><input type="number" id="currentBalance" placeholder="e.g. 3500000"></td></tr>
-          <tr><td>Interest Rate (% p.a.)</td><td><input type="number" id="prepayRate" step="0.01" placeholder="e.g. 8.5"></td></tr>
-          <tr><td>Remaining Tenure (months)</td><td><input type="number" id="remainingTenure" placeholder="e.g. 180"></td></tr>
-          <tr><td>EMI Amount (₹)</td><td><input type="number" id="currentEMI" placeholder="e.g. 35000"></td></tr>
-          <tr><td>Prepayment Amount (₹)</td><td><input type="number" id="prepayAmount" placeholder="e.g. 500000"></td></tr>
-          <tr><td>Prepayment Type</td>
-              <td><select id="prepayType">
-                  <option value="reduceEMI">Reduce EMI</option>
-                  <option value="reduceTenure">Reduce Tenure</option>
-              </select></td></tr>
-        </table>
-        <button class="action" onclick="calculatePrepayment()">Calculate Savings</button>
-        <div id="prepayResult"></div>
+        <h2 class="mb-3">Loan Prepayment Calculator</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr><td>Current Loan Balance (₹)</td><td><input type="number" id="currentBalance" placeholder="e.g. 3500000" class="form-control"></td></tr>
+            <tr><td>Interest Rate (% p.a.)</td><td><input type="number" id="prepayRate" step="0.01" placeholder="e.g. 8.5" class="form-control"></td></tr>
+            <tr><td>Remaining Tenure (months)</td><td><input type="number" id="remainingTenure" placeholder="e.g. 180" class="form-control"></td></tr>
+            <tr><td>EMI Amount (₹)</td><td><input type="number" id="currentEMI" placeholder="e.g. 35000" class="form-control"></td></tr>
+            <tr><td>Prepayment Amount (₹)</td><td><input type="number" id="prepayAmount" placeholder="e.g. 500000" class="form-control"></td></tr>
+            <tr><td>Prepayment Type</td>
+                <td><select id="prepayType" class="form-select">
+                    <option value="reduceEMI">Reduce EMI</option>
+                    <option value="reduceTenure">Reduce Tenure</option>
+                </select></td></tr>
+          </table>
+        </div>
+        <button class="action btn btn-success" onclick="calculatePrepayment()">Calculate Savings</button>
+        <div id="prepayResult" class="mt-4"></div>
 
-        <div class="info-box">
-          <h3>Loan Prepayment Benefits and Rules in India</h3>
+        <div class="info-box alert alert-success mt-4">
+          <h3 class="alert-heading">Loan Prepayment Benefits and Rules in India</h3>
           <p>Making prepayments on your loan can save significant interest costs. Here's what Indian borrowers should know:</p>
           
           <h4>Prepayment Rules in India</h4>
@@ -592,8 +673,8 @@
     </div>
 
     <div class="instructions-column">
-      <div class="instructions-box" id="instructionsBox">
-        <h3> How to Use</h3>
+      <div class="instructions-box card card-body" id="instructionsBox">
+        <h3 class="card-title"> How to Use</h3>
         <ol>
           <li>Enter your <strong>Annual CTC</strong> (Cost to Company) in rupees.</li>
           <li>Specify the <strong>Basic % of CTC</strong> (typically 20-50%).</li>
@@ -604,14 +685,15 @@
     </div>
   </div>
 
-  <footer>
+  <footer class="mt-5">
     <p>
       Our calculator has been extensively tested for correct functionality. However, no guarantee can be given for the results. 
-      <a href="privacy.html">Privacy Policy</a>
+      <a href="privacy.html" class="text-decoration-none">Privacy Policy</a>
     </p>
   </footer>
 
-  <!-- SCRIPT -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
   <script type="text/javascript">
     var gk_isXlsx = false;
     var gk_xlsxFileLookup = {};
@@ -646,12 +728,13 @@
 
     // Helper to render results table
     function fmt(num){return Number(num).toLocaleString('en-IN',{maximumFractionDigits:2});}
-    const makeTable=rows=>`<table><thead><tr><th>Component</th><th>Amount (₹)</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${fmt(r[1])}</td></tr>`).join('')}</tbody></table>`;
+    // Updated makeTable to use Bootstrap table classes
+    const makeTable=rows=>`<table class="table table-bordered table-striped mt-3"><thead><tr><th>Component</th><th>Amount (₹)</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${fmt(r[1])}</td></tr>`).join('')}</tbody></table>`;
 
     // Instructions content
     const instructionsContent = {
       salaryEmployee: `
-        <h3>How to Use</h3>
+        <h3 class="card-title">How to Use</h3>
         <ol>
           <li>Enter your <strong>Annual CTC</strong> (Cost to Company) in rupees.</li>
           <li>Specify the <strong>Basic % of CTC</strong> (typically 20-50%).</li>
@@ -660,7 +743,7 @@
         </ol>
       `,
       salaryEmployer: `
-        <h3>How to Use</h3>
+        <h3 class="card-title">How to Use</h3>
         <ol>
           <li>Enter the <strong>Desired Net Monthly Take-Home</strong> salary in rupees.</li>
           <li>Specify the <strong>Basic % of Gross</strong> (typically 40-50%).</li>
@@ -669,7 +752,7 @@
         </ol>
       `,
       taxCalc: `
-        <h3>How to Use</h3>
+        <h3 class="card-title">How to Use</h3>
         <ol>
           <li>Enter your <strong>Total Gross Income</strong> for FY 2025-26.</li>
           <li>Input deductions like <strong>80C, NPS, 80D, etc.</strong> (if applicable).</li>
@@ -678,7 +761,7 @@
         </ol>
       `,
       pfCalc: `
-        <h3>How to Use</h3>
+        <h3 class="card-title">How to Use</h3>
         <ol>
           <li>Enter your <strong>Current Monthly Basic</strong> salary.</li>
           <li>Input <strong>Years Completed</strong> and <strong>Years Left</strong> in service.</li>
@@ -687,7 +770,7 @@
         </ol>
       `,
       hraCalc: `
-        <h3>How to Use</h3>
+        <h3 class="card-title">How to Use</h3>
         <ol>
           <li>Enter your <strong>Monthly Basic Salary</strong> and <strong>HRA Received</strong>.</li>
           <li>Input the <strong>Monthly Rent Paid</strong>.</li>
@@ -696,7 +779,7 @@
         </ol>
       `,
       pension: `
-        <h3>How to Use</h3>
+        <h3 class="card-title">How to Use</h3>
         <ol>
           <li>Enter your <strong>Last Drawn Basic</strong> salary.</li>
           <li>Input your <strong>Total Years of Service</strong>.</li>
@@ -705,7 +788,7 @@
         </ol>
       `,
       emiCalc: `
-        <h3>How to Use</h3>
+        <h3 class="card-title">How to Use</h3>
         <ol>
           <li>Enter the <strong>Loan Amount</strong> in rupees.</li>
           <li>Input the <strong>Interest Rate</strong> (% per annum).</li>
@@ -714,7 +797,7 @@
         </ol>
       `,
       prepaymentCalc: `
-        <h3>How to Use</h3>
+        <h3 class="card-title">How to Use</h3>
         <ol>
           <li>Enter your <strong>Current Loan Balance</strong> and <strong>Interest Rate</strong>.</li>
           <li>Input the <strong>Remaining Tenure</strong> (in months) and <strong>Current EMI</strong>.</li>
@@ -728,18 +811,28 @@
     function showCalc(id){
       document.querySelectorAll('.container').forEach(c=>c.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.tab-button').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(b=>b.classList.remove('active', 'nav-link', 'active')); // Remove nav-link active class
+      document.querySelectorAll('.dropdown-item').forEach(d=>d.classList.remove('active')); // Remove dropdown item active state
+
       if(id.startsWith('salary')){
         document.getElementById('salaryDropdown').classList.add('active');
+        document.querySelector(`#salaryDropdown .dropdown-content button[onclick="showCalc('${id}')"]`).classList.add('active');
       }else if(id.startsWith('emi') || id.startsWith('prepayment')){
         document.getElementById('loanDropdown').classList.add('active');
+        document.querySelector(`#loanDropdown .dropdown-content button[onclick="showCalc('${id}')"]`).classList.add('active');
       }else{
         const map={taxCalc:'taxTab',pfCalc:'pfTab',hraCalc:'hraTab',pension:'pensionTab'};
         document.getElementById(map[id]).classList.add('active');
+        document.getElementById(map[id]).classList.add('nav-link', 'active'); // Add nav-link active class
       }
       // Update instructions
       document.getElementById('instructionsBox').innerHTML = instructionsContent[id];
     }
+
+    // Initial load for Salary Employee tab
+    document.addEventListener('DOMContentLoaded', () => {
+      showCalc('salaryEmployee');
+    });
 
     // EMI Calculator
     function calculateEMI(){
@@ -747,7 +840,10 @@
       const rate = parseFloat(document.getElementById('interestRate').value)/1200; // monthly rate
       const tenure = parseFloat(document.getElementById('loanTenure').value)*12; // in months
       
-      if(!principal || !rate || !tenure) return;
+      if(!principal || !rate || !tenure) {
+        document.getElementById('emiResult').innerHTML = '<p class="text-danger">Please enter valid values for all fields.</p>';
+        return;
+      }
       
       const emi = principal * rate * Math.pow(1+rate, tenure) / (Math.pow(1+rate, tenure)-1);
       const totalPayment = emi * tenure;
@@ -762,7 +858,7 @@
       
       // Generate amortization table
       let balance = principal;
-      let amortization = '<h3>Year-wise Breakup</h3><table><tr><th>Year</th><th>Principal (₹)</th><th>Interest (₹)</th><th>Balance (₹)</th></tr>';
+      let amortization = '<h3 class="mt-4">Year-wise Breakup</h3><div class="table-responsive"><table class="table table-bordered table-striped"><thead><tr><th>Year</th><th>Principal (₹)</th><th>Interest (₹)</th><th>Balance (₹)</th></tr></thead><tbody>';
       
       for(let year=1; year<=tenure/12; year++){
         let yearPrincipal = 0;
@@ -785,7 +881,7 @@
         </tr>`;
       }
       
-      amortization += '</table>';
+      amortization += '</tbody></table></div>';
       document.getElementById('emiBreakup').innerHTML = amortization;
     }
 
@@ -799,7 +895,7 @@
       const prepayType = document.getElementById('prepayType').value;
       
       if(!balance || !rate || !tenure || !emi || !prepay || balance <= 0 || rate <= 0 || tenure <= 0 || emi <= 0 || prepay <= 0) {
-        document.getElementById('prepayResult').innerHTML = '<p>Please enter valid positive values for all fields.</p>';
+        document.getElementById('prepayResult').innerHTML = '<p class="text-danger">Please enter valid positive values for all fields.</p>';
         return;
       }
       
@@ -807,7 +903,7 @@
       let resultHTML = '';
       
       if(newBalance <= 0) {
-        document.getElementById('prepayResult').innerHTML = '<p>Prepayment amount exceeds loan balance. Loan would be fully paid off.</p>';
+        document.getElementById('prepayResult').innerHTML = '<p class="text-success">Prepayment amount exceeds loan balance. Loan would be fully paid off.</p>';
         return;
       }
       
@@ -826,7 +922,7 @@
       } else {
         // Calculate new tenure with same EMI
         if(emi <= newBalance * rate) {
-          document.getElementById('prepayResult').innerHTML = '<p>Error: EMI is too low to cover interest on the new balance. Please increase EMI or reduce prepayment amount.</p>';
+          document.getElementById('prepayResult').innerHTML = '<p class="text-danger">Error: EMI is too low to cover interest on the new balance. Please increase EMI or reduce prepayment amount.</p>';
           return;
         }
         const newTenure = Math.ceil(Math.log(emi / (emi - newBalance * rate)) / Math.log(1 + rate));
@@ -847,24 +943,65 @@
     // Salary employee
     function calcSalary(){
       const c=parseFloat(document.getElementById('ctc').value), pct=parseFloat(document.getElementById('basicPercent').value);
-      if(!c||!pct) return;
+      if(!c||!pct) {
+        document.getElementById('salResult').innerHTML = '<p class="text-danger">Please enter valid values for CTC and Basic %.</p>';
+        return;
+      }
       const basic=c*pct/100, pfEr=basic*0.12, pfEe=basic*0.12, gratuity=basic*0.0481, gross=c-pfEr-gratuity;
-      const taxable=Math.max(0,gross-50000);
+      const taxable=Math.max(0,gross-50000); // Standard deduction of 50,000 for new regime
       const slabs=[[300000,0],[600000,0.05],[900000,0.1],[1200000,0.15],[1500000,0.2],[Infinity,0.3]];
       let tax=0,last=0; for(const[lim,r] of slabs){ if(taxable>lim){tax+=(lim-last)*r; last=lim;} else {tax+=(taxable-last)*r; break;} }
-      const cess=tax*0.04, totalTax=tax+cess, netAnnual=gross-pfEe-totalTax, netMonthly=netAnnual/12;
+      const cess=tax*0.04, totalTax=tax+cess;
+      const rebate = (taxable <= 700000) ? Math.min(totalTax, 25000) : 0; // New regime rebate
+      const finalTax = totalTax - rebate;
+      const netAnnual=gross-pfEe-finalTax, netMonthly=netAnnual/12;
+
       document.getElementById('salResult').innerHTML=makeTable([
-        ['Basic',basic],['Employer PF',pfEr],['Gratuity',gratuity],['Gross',gross],['Taxable',taxable],['Tax',tax],['Cess',cess],['Total Tax',totalTax],['Employee PF',pfEe],['Net Annual',netAnnual],['Net Monthly',netMonthly]
+        ['Basic',basic],
+        ['Employer PF Contribution',pfEr],
+        ['Gratuity Payable',gratuity],
+        ['Gross Salary (Annual)',gross],
+        ['Taxable Income (New Regime)',taxable],
+        ['Income Tax (before cess/rebate)',tax],
+        ['87A Rebate',-rebate],
+        ['Health & Education Cess',cess],
+        ['Total Income Tax',finalTax],
+        ['Employee PF Contribution',pfEe],
+        ['Net Annual Take-Home Salary',netAnnual],
+        ['Net Monthly Take-Home Salary',netMonthly]
       ]);
     }
 
     // Salary employer
     function calcEmployer(){
       const net=parseFloat(document.getElementById('desiredNet').value), pct=parseFloat(document.getElementById('empBasicPercent').value);
-      if(!net||!pct) return;
-      const gross=net*1.35, basic=gross*pct/100, pf=basic*0.12, gratuity=basic*0.0481, ctc=gross+pf+gratuity;
+      if(!net||!pct) {
+        document.getElementById('empResult').innerHTML = '<p class="text-danger">Please enter valid values for Desired Net Monthly Take-Home and Basic %.</p>';
+        return;
+      }
+
+      // This is a simplified reverse calculation and might need more refinement
+      // For simplicity, assuming a fixed tax rate or a gross-up approach
+      // A more accurate calculation would involve iterative tax calculation
+      
+      // Estimate gross based on net and assuming some deductions and tax percentage
+      // This factor (1.35) is a rough estimate and might need adjustment based on actual tax slabs and deductions.
+      const estimatedGrossAnnual = net * 12 / (1 - 0.20 - 0.12); // Assuming ~20% tax + 12% employee PF
+      const estimatedGrossMonthly = estimatedGrossAnnual / 12;
+
+      const basic = estimatedGrossMonthly * (pct / 100);
+      const pfEmployer = basic * 0.12;
+      const gratuity = basic * 0.0481;
+      const ctcMonthly = estimatedGrossMonthly + pfEmployer + gratuity;
+      const ctcAnnual = ctcMonthly * 12;
+
       document.getElementById('empResult').innerHTML=makeTable([
-        ['Gross',gross],['Basic',basic],['Employer PF',pf],['Gratuity',gratuity],['CTC (Monthly)',ctc],['CTC (Annual)',ctc*12]
+        ['Estimated Gross Monthly Salary',estimatedGrossMonthly],
+        ['Basic (of Gross Monthly)',basic],
+        ['Employer PF Contribution (Monthly)',pfEmployer],
+        ['Gratuity Provision (Monthly)',gratuity],
+        ['Estimated CTC (Monthly)',ctcMonthly],
+        ['Estimated CTC (Annual)',ctcAnnual]
       ]);
     }
 
@@ -879,51 +1016,112 @@
       const d80g=parseFloat(document.getElementById('ded80g').value)||0;
       const dOther=parseFloat(document.getElementById('dedOther').value)||0;
       const stdDed=50000;
-      let deductions=stdDed;
+      let deductions=0; // Initialize with 0, add standard deduction later if applicable
       const regime=document.getElementById('taxRegime').value;
-      if(regime==='old') deductions+=d80c+dNps+d80d+d24b+d80e+d80g+dOther;
+
+      if(regime==='old') {
+        deductions = stdDed + d80c + dNps + d80d + d24b + d80e + d80g + dOther;
+      } else { // New regime
+        deductions = stdDed; // Only standard deduction is allowed in new regime
+      }
+      
       const taxable=Math.max(0,income-deductions);
+
       const slab=(val,arr)=>{let t=0,l=0;for(const[lim,r] of arr){if(val>lim){t+=(lim-l)*r;l=lim;}else{t+=(val-l)*r;break;}}return t;};
-      const tax=regime==='old'?slab(taxable,[[250000,0],[500000,0.05],[1000000,0.2],[Infinity,0.3]]):slab(taxable,[[300000,0],[600000,0.05],[900000,0.1],[1200000,0.15],[1500000,0.2],[Infinity,0.3]]);
+      
+      let tax = 0;
+      if(regime === 'old'){
+        tax=slab(taxable,[[250000,0],[500000,0.05],[1000000,0.2],[Infinity,0.3]]);
+      } else { // New regime
+        tax=slab(taxable,[[300000,0],[600000,0.05],[900000,0.1],[1200000,0.15],[1500000,0.2],[Infinity,0.3]]);
+      }
+      
       const rebate=(regime==='old'&&taxable<=500000)?Math.min(tax,12500):(regime==='new'&&taxable<=700000?Math.min(tax,25000):0);
-      const cess=(tax-rebate)*0.04, total=tax-rebate+cess;
+      const cess=(tax-rebate)*0.04;
+      const total=tax-rebate+cess;
+
       document.getElementById('taxResult').innerHTML=makeTable([
-        ['Gross Income',income],['Deductions',deductions],['Taxable Income',taxable],['Tax',tax],['87A Rebate',-rebate],['Cess',cess],['Total Tax',total]
+        ['Gross Income',income],
+        ['Total Deductions',deductions],
+        ['Taxable Income',taxable],
+        ['Income Tax (before rebate & cess)',tax],
+        ['87A Rebate',-rebate],
+        ['Health & Education Cess',cess],
+        ['Total Income Tax Payable',total]
       ]);
     }
 
     // PF / Gratuity projection
     function calcPF(){
       const mb=parseFloat(document.getElementById('pfBasic').value), done=parseFloat(document.getElementById('yearsDone').value), left=parseFloat(document.getElementById('yearsLeft').value), bal=parseFloat(document.getElementById('currentPF').value)||0, rate=parseFloat(document.getElementById('pfRate').value)||8.25;
-      if(!mb||done<0||left<0) return;
-      const monthly=mb*0.12*2, annual=monthly*12; let corpus=bal; for(let i=0;i<left;i++){ corpus=(corpus+annual)*(1+rate/100); }
-      const gratuity=Math.min((mb*15/26)*(done+left),2000000);
+      if(!mb||done<0||left<0) {
+        document.getElementById('pfResult').innerHTML = '<p class="text-danger">Please enter valid values for Basic, Years Completed, and Years Left.</p>';
+        return;
+      }
+      const monthlyEe = Math.min(mb, 15000) * 0.12; // Employee contribution capped at 15000 basic for PF calculation
+      const monthlyEr = Math.min(mb, 15000) * 0.12; // Employer contribution capped
+      const annualContrib = (monthlyEe + monthlyEr) * 12;
+
+      let corpus = bal;
+      const totalYears = done + left;
+
+      for(let i = 0; i < left; i++){
+        corpus = (corpus + annualContrib) * (1 + rate / 100);
+      }
+      
+      const gratuityValue = (mb * 15 / 26) * totalYears; // Gratuity based on actual basic, not capped
+      const gratuity = Math.min(gratuityValue, 2000000); // Gratuity tax-free limit is 20 Lakhs
+
       document.getElementById('pfResult').innerHTML=makeTable([
-        ['Monthly PF Contribution',monthly],['Projected PF Corpus',corpus],['Projected Gratuity',gratuity]
+        ['Monthly Employee PF Contribution', monthlyEe],
+        ['Monthly Employer PF Contribution', monthlyEr],
+        ['Projected PF Corpus (at retirement)', corpus],
+        ['Projected Gratuity (after service)', gratuity]
       ]);
     }
 
     // HRA Exemption
     function calcHRA(){
       const basic=parseFloat(document.getElementById('hraBasic').value), hra=parseFloat(document.getElementById('hraRec').value), rent=parseFloat(document.getElementById('rentPaid').value);
-      if(!basic||!hra||!rent) return;
+      if(!basic||!hra||!rent) {
+        document.getElementById('hraResult').innerHTML = '<p class="text-danger">Please enter valid values for Basic Salary, HRA Received, and Rent Paid.</p>';
+        return;
+      }
       const annualBasic=basic*12, hraAnnual=hra*12, rentAnnual=rent*12;
       const tenPc=annualBasic*0.10;
       const percentBasic=(document.getElementById('isMetro').value==='yes'?0.50:0.40)*annualBasic;
       const excessRent=Math.max(0,rentAnnual-tenPc);
       const exemption=Math.min(hraAnnual,excessRent,percentBasic);
+      const taxableHRA = hraAnnual - exemption;
+
       document.getElementById('hraResult').innerHTML=makeTable([
-        ['Actual HRA received',hraAnnual],['Rent - 10% Basic',excessRent],['40%/50% Basic',percentBasic],['Exemption',exemption],['Taxable HRA',hraAnnual-exemption]
+        ['Actual HRA received (Annual)',hraAnnual],
+        ['Rent paid minus 10% of Basic (Annual)',excessRent],
+        [`${document.getElementById('isMetro').value==='yes'?'50%':'40%'} of Basic Salary (Annual)`,percentBasic],
+        ['HRA Exemption (Annual)',exemption],
+        ['Taxable HRA (Annual)',taxableHRA]
       ]);
     }
 
     // Pension
     function calcPension(){
       const b=parseFloat(document.getElementById('lastBasic').value), y=parseFloat(document.getElementById('serviceYears').value), f=parseFloat(document.getElementById('pensFactor').value)||1;
-      if(!b||!y) return;
-      const monthly=b*y*f/70;
+      if(!b||!y) {
+        document.getElementById('pensResult').innerHTML = '<p class="text-danger">Please enter valid values for Last Drawn Basic and Total Years of Service.</p>';
+        return;
+      }
+      // EPS calculation is capped at 15000 basic for pensionable salary
+      const pensionableSalary = Math.min(b, 15000);a
+      const pensionableService = Math.min(y, 35); // Max pensionable service is 35 years
+
+      const monthlyPension = (pensionableSalary * pensionableService) / 70;
+      const annualPension = monthlyPension * 12;
+
       document.getElementById('pensResult').innerHTML=makeTable([
-        ['Monthly Pension',monthly],['Annual Pension',monthly*12]
+        ['Pensionable Salary (capped at ₹15,000)', pensionableSalary],
+        ['Pensionable Service (capped at 35 years)', pensionableService],
+        ['Estimated Monthly Pension (EPS)', monthlyPension],
+        ['Estimated Annual Pension (EPS)', annualPension]
       ]);
     }
   </script>
