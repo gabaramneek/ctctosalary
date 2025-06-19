@@ -6,22 +6,22 @@
   <meta name="keywords" content="salary calculator India, income tax calculator 2025-26, PF calculation, HRA exemption, gratuity calculator, pension calculator, loan EMI calculator, prepayment calculator, take home salary India">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salary & Loan Calculator 2025-26 | Tax, PF, HRA, EMI Calculators</title>
-  <link rel="icon" type="image/png" href="favicon-new5.png">
+  <link rel="icon" type="image/png" href="favicon-orange.png">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
   <style>
 
-/* Override info box background color to blue */
+/* Override info box background color to orange-yellow */
 .info-box {
-  background: #dceeff !important;
-  border-left: 4px solid #0d6efd !important;
+  background: #fffbe6 !important; /* Light yellow */
+  border-left: 4px solid #ffc107 !important; /* Orange */
   color: #000 !important;
 }
 .info-box h3,
 .info-box h4 {
-  color: #003366 !important;
+  color: #e65100 !important; /* Darker orange */
 }
 
 
@@ -36,8 +36,8 @@
   border-bottom: 1px solid #ddd;
 }
 .tab-button {
-  background: #5b6eff !important; /* Force blue background for all tab buttons */
-  color: white !important;       /* Force white text for all tab buttons */
+  background: #ffc107 !important; /* Orange background for all tab buttons */
+  color: #333 !important;       /* Dark text for all tab buttons */
   font-weight: 600;
   padding: 10px 20px;
   border: none;
@@ -46,16 +46,16 @@
   cursor: pointer;
 }
 .tab-button.active {
-  background: #003366 !important; /* A darker blue for the active tab */
+  background: #e65100 !important; /* A darker orange for the active tab */
   color: white !important;
 }
 .tab-button:hover {
-  background: #0a58ca !important; /* A slightly darker blue on hover */
+  background: #ffa000 !important; /* A slightly darker orange on hover */
 }
 
 /* Section Containers */
 .container {
-  background: #f5f7ff !important;
+  background: #fff8e1 !important; /* Lightest yellow background */
   border-radius: 10px !important;
   padding: 20px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
@@ -78,8 +78,8 @@ select {
 
 /* Buttons */
 button.action {
-  background: #5b6eff !important;
-  color: #fff !important;
+  background: #ffc107 !important; /* Orange for action buttons */
+  color: #333 !important;         /* Dark text for action buttons */
   padding: 10px 20px !important;
   border-radius: 8px !important;
   font-weight: bold !important;
@@ -87,31 +87,31 @@ button.action {
   transition: background 0.3s ease !important;
 }
 button.action:hover {
-  background: #3a4ee0 !important;
+  background: #ffa000 !important; /* Darker orange on hover */
 }
 
 /* Footer */
 footer {
-  background: #5b6eff !important;
-  color: white !important;
+  background: #ffc107 !important; /* Orange footer */
+  color: #333 !important;         /* Dark text for footer */
   text-align: center !important;
   padding: 30px 20px !important;
   font-size: 0.95rem !important;
 }
 footer a {
-  color: #fff !important;
+  color: #333 !important;         /* Dark text for footer links */
   text-decoration: underline !important;
 }
 
     /* Your existing CSS variables, slightly adjusted for theme consistency if needed */
     :root {
-      --blue: #2c3e50; /* Adjust to match Flatly's primary color */
-      --blue-dark: #233140; /* Darker shade */
-      --blue-light: #ecf0f1; /* Lighter shade/background */
-      --bg: #f8f8f8; /* A light grey background, common in Flatly */
-      --success: #0d6efd; /* Bootstrap success color */
-      --success-dark: #0a58ca;
-      --success-light: #e7f1ff;
+      --orange: #e65100; /* Primary orange */
+      --orange-dark: #bf360c; /* Darker shade */
+      --yellow-light: #fff3e0; /* Lighter shade/background */
+      --bg: #ffffff; /* A light yellow background */
+      --success: #ffc107; /* Orange success color */
+      --success-dark: #ffa000;
+      --success-light: #fff8e1;
     }
 
     body {
@@ -157,10 +157,10 @@ footer a {
   align-items: center;
   justify-content: center;
   padding: 0 12px;
-  background: #5b6eff !important; /* Force blue background */
+  background: #ffc107 !important; /* Orange background */
   border: none;
   border-radius: 5px 5px 0 0;
-  color: white !important; /* Force white text */
+  color: #333 !important; /* Dark text */
   font-weight: bold;
   cursor: pointer;
   position: relative;
@@ -170,15 +170,15 @@ footer a {
   transition: all 0.3s ease;
 }
 .tab-button.active {
-  background: #003366 !important; /* Darker blue for active */
+  background: #e65100 !important; /* Darker orange for active */
   color: white !important;
-  border: 2px solid #003366 !important; /* Keep border consistent with active background */
+  border: 2px solid #e65100 !important; /* Keep border consistent with active background */
   border-bottom: none !important;
   z-index: 1; /* Bring active tab to front */
 }
 .tab-button:hover:not(.active) {
-  background: #0a58ca !important; /* Darker blue on hover */
-  color: white !important;
+  background: #ffa000 !important; /* Darker orange on hover */
+  color: #333 !important;
 }
 
     /* Dropdown */
@@ -190,7 +190,7 @@ footer a {
       left: 0;
       width: 100%;
       background: #fff;
-      border: 2px solid var(--blue);
+      border: 2px solid var(--orange);
       border-top: none;
       border-radius: 0 0 5px 5px;
       box-shadow: 0 4px 6px rgba(0,0,0,.08);
@@ -209,7 +209,7 @@ footer a {
       transition: background-color 0.2s ease;
     }
     .dropdown-content button:hover {
-      background: var(--blue-light);
+      background: var(--yellow-light);
     }
 
     /* PANELS */
@@ -239,8 +239,8 @@ footer a {
       text-align: left;
     }
     th {
-      background: var(--blue-light);
-      color: var(--blue-dark);
+      background: var(--yellow-light);
+      color: var(--orange-dark);
     }
     input, select {
       width: 230px;
@@ -251,15 +251,15 @@ footer a {
     button.action {
       margin-top: 20px;
       padding: 10px 15px;
-      background: #57f2d8; /* New button background color */
-      color: #000000; /* New button text color for better contrast */
+      background: #ffc107; /* Orange button background color */
+      color: #333; /* Dark text for better contrast */
       border: none;
       border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
     button.action:hover {
-      background: #3cc8b4; /* Darker shade for hover effect */
+      background: #ffa000; /* Darker shade for hover effect */
     }
     
     /* Fix dropdown text overflow */
@@ -274,16 +274,16 @@ footer a {
 
     /* Info sections */
   .info-box {
-      background: #E6F8F5; /* New info box background color */
+      background: #fffbe6; /* Light yellow info box background color */
       padding: 15px;
       border-radius: 5px;
       margin-top: 30px;
-      border-left: 4px solid #bcf7ed; /* Example: darker teal border */
+      border-left: 4px solid #ffc107; /* Orange border */
       color: #000000; /* Set default text color for info-box to black */
     }
     .info-box h3 {
       margin-top: 0;
-      color: #000000; /* Set h3 text color in info-box to black */
+      color: #e65100; /* Set h3 text color in info-box to darker orange */
     }
     .info-box ul {
       padding-left: 20px;
@@ -302,7 +302,7 @@ footer a {
     /* Instructions */
     .instructions-box h3 {
       margin-top: 0;
-      color: var(--blue-dark);
+      color: var(--orange-dark);
       padding-left: 15px;
     }
     .instructions-box ul {
@@ -325,7 +325,7 @@ footer a {
 
     /* Override Bootstrap defaults for specific elements if necessary */
     h1 {
-      color: var(--blue-dark); /* Match heading color to theme */
+      color: var(--orange-dark); /* Match heading color to theme */
     }
 @media (max-width: 768px) {
   .main-layout {
@@ -356,7 +356,7 @@ footer a {
 
   .dropdown-content {
     position: relative;
-    border: 1px solid var(--blue);
+    border: 1px solid var(--orange);
     border-radius: 0 0 5px 5px;
     box-shadow: none;
     width: 100%;
@@ -405,6 +405,15 @@ h1 {
         height: 50px; /* Adjust height for smaller screens if desired */
     }
 }
+/* 👇 Move Chatbase chatbot slightly to the left */
+iframe[src*="chatbase.co"] {
+    right: 1000px !important; /* Default is ~20px, increase to shift left */
+    bottom: 20px !important;
+}
+.container h2 {
+  color: #ff9800 !important; /* Light orange */
+}
+
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXT7XHZ87R"></script>
   <script>
@@ -418,7 +427,7 @@ h1 {
   <div class="main-layout">
     <div class="content-column">
        <h1>
-    <img id="logo-img" src="Newlogo4.png" alt="CTC to Salary Calculator">   
+    <img id="logo-img" src="logoorange.png" alt="CTC to Salary Calculator">   
   </h1>
  <p class="custom-lead">Use our powerful Salary calculator, Income tax calculator, PF/gratuity calculator, and loan calculator to calculate your net in hand salary, income tax and more.</p>
 
@@ -1250,7 +1259,57 @@ h1 {
     }
   </script>
   <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="jGGdI6q3-czolU1bVXbJF";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+(function(){
+  if(!window.chatbase||window.chatbase("getState")!=="initialized"){
+    window.chatbase=(...arguments)=>{
+      if(!window.chatbase.q){window.chatbase.q=[]}
+      window.chatbase.q.push(arguments)
+    };
+    window.chatbase=new Proxy(window.chatbase,{
+      get(target,prop){
+        if(prop==="q"){return target.q}
+        return(...args)=>target(prop,...args)
+      }
+    });
+  }
+  const onLoad=function(){
+    const script=document.createElement("script");
+    script.src="https://www.chatbase.co/embed.min.js";
+    script.id="jGGdI6q3-czolU1bVXbJF";
+    script.domain="www.chatbase.co";
+    document.body.appendChild(script);
+  };
+  if(document.readyState==="complete"){onLoad()}
+  else{window.addEventListener("load",onLoad)}
+})();
+</script>
+
+<script>
+  window.addEventListener("load", () => {
+    const adjustChatPosition = () => {
+      const chatIframe = document.querySelector('iframe[src*="chatbase.co"]');
+      if (chatIframe) {
+        chatIframe.style.right = "30px";
+        chatIframe.style.bottom = "20px";
+      } else {
+        setTimeout(adjustChatPosition, 300);
+      }
+    };
+    adjustChatPosition();
+  });
+</script>
+<script>
+  const observer = new MutationObserver(() => {
+    const iframe = document.querySelector('iframe[src*="chatbase.co"]');
+    if (iframe) {
+      iframe.style.right = '1000px'; // Move further left
+      iframe.style.bottom = '20px';
+      iframe.style.zIndex = '9999'; // Ensure visibility
+      observer.disconnect(); // Stop watching after success
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 </script>
 </body>
 </html>
