@@ -6,21 +6,112 @@
   <meta name="keywords" content="salary calculator India, income tax calculator 2025-26, PF calculation, HRA exemption, gratuity calculator, pension calculator, loan EMI calculator, prepayment calculator, take home salary India">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salary & Loan Calculator 2025-26 | Tax, PF, HRA, EMI Calculators</title>
-  <link rel="icon" type="image/png" href="favicon-new2.png">
+  <link rel="icon" type="image/png" href="favicon-new5.png">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
   <style>
+
+/* Override info box background color to blue */
+.info-box {
+  background: #dceeff !important;
+  border-left: 4px solid #0d6efd !important;
+  color: #000 !important;
+}
+.info-box h3,
+.info-box h4 {
+  color: #003366 !important;
+}
+
+
+/* UILizard Design Enhancements */
+
+/* Tabs */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.tab-button {
+  background: #0d6efd !important; /* Force blue background for all tab buttons */
+  color: white !important;       /* Force white text for all tab buttons */
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  margin: 5px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.tab-button.active {
+  background: #003366 !important; /* A darker blue for the active tab */
+  color: white !important;
+}
+.tab-button:hover {
+  background: #0a58ca !important; /* A slightly darker blue on hover */
+}
+
+/* Section Containers */
+.container {
+  background: #f5f7ff !important;
+  border-radius: 10px !important;
+  padding: 20px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  margin-bottom: 20px !important;
+}
+
+/* Inputs */
+input[type="number"],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select {
+  width: 100% !important;
+  padding: 12px 15px !important;
+  border-radius: 8px !important;
+  border: 1px solid #ccc !important;
+  font-size: 1rem !important;
+}
+
+/* Buttons */
+button.action {
+  background: #5b6eff !important;
+  color: #fff !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  border: none !important;
+  transition: background 0.3s ease !important;
+}
+button.action:hover {
+  background: #3a4ee0 !important;
+}
+
+/* Footer */
+footer {
+  background: #5b6eff !important;
+  color: white !important;
+  text-align: center !important;
+  padding: 30px 20px !important;
+  font-size: 0.95rem !important;
+}
+footer a {
+  color: #fff !important;
+  text-decoration: underline !important;
+}
+
     /* Your existing CSS variables, slightly adjusted for theme consistency if needed */
     :root {
       --blue: #2c3e50; /* Adjust to match Flatly's primary color */
       --blue-dark: #233140; /* Darker shade */
       --blue-light: #ecf0f1; /* Lighter shade/background */
       --bg: #f8f8f8; /* A light grey background, common in Flatly */
-      --success: #28a745; /* Bootstrap success color */
-      --success-dark: #1e7e34;
-      --success-light: #d4edda;
+      --success: #0d6efd; /* Bootstrap success color */
+      --success-dark: #0a58ca;
+      --success-light: #e7f1ff;
     }
 
     body {
@@ -50,45 +141,45 @@
       padding: 15px;
       border-radius: 5px;
       box-shadow: 0 0 5px #ccc;
-      margin-top: 225px; /* Keep this to align with the main content */
+      margin-top: 350px; /* Keep this to align with the main content */
     }
 
     /* TAB BAR */
-    .tabs {
-      display: flex;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .tab-button {
-      flex: 1 0 auto;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 12px;
-      background: var(--blue-light); /* Light background for inactive tabs */
-      border: none;
-      border-radius: 5px 5px 0 0;
-      color: var(--blue-dark); /* Darker text for inactive */
-      font-weight: bold;
-      cursor: pointer;
-      position: relative;
-      box-sizing: border-box;
-      margin: 2px;
-      min-width: 100px;
-      transition: all 0.3s ease;
-    }
-    .tab-button.active {
-      background: #fff;
-      color: var(--blue);
-      border: 2px solid var(--blue);
-      border-bottom: none;
-      z-index: 1; /* Bring active tab to front */
-    }
-    .tab-button:hover:not(.active) {
-      background: var(--blue-light); /* Hover effect */
-      color: var(--blue);
-    }
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.tab-button {
+  flex: 1 0 auto;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  background: #0d6efd !important; /* Force blue background */
+  border: none;
+  border-radius: 5px 5px 0 0;
+  color: white !important; /* Force white text */
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  margin: 2px;
+  min-width: 100px;
+  transition: all 0.3s ease;
+}
+.tab-button.active {
+  background: #003366 !important; /* Darker blue for active */
+  color: white !important;
+  border: 2px solid #003366 !important; /* Keep border consistent with active background */
+  border-bottom: none !important;
+  z-index: 1; /* Bring active tab to front */
+}
+.tab-button:hover:not(.active) {
+  background: #0a58ca !important; /* Darker blue on hover */
+  color: white !important;
+}
 
     /* Dropdown */
     .dropdown-content {
@@ -295,6 +386,25 @@
   line-height: 1.4;
   }
 }
+h1 {
+  text-align: center; /* Centers inline-block elements like img */
+  margin-top: 20px; /* Adds some space from the top of the page */
+  margin-bottom: 20px; /* Adds space below the logo */
+}
+
+#logo-img {
+  display: block; /* Ensures margin: auto works for horizontal centering */
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px; /* Set your desired height here */
+  /* Add any other styles like max-width if needed for responsiveness */
+}
+
+@media (max-width: 768px) {
+    #logo-img {
+        height: 50px; /* Adjust height for smaller screens if desired */
+    }
+}
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXT7XHZ87R"></script>
   <script>
@@ -308,9 +418,9 @@
   <div class="main-layout">
     <div class="content-column">
        <h1>
-    <img src="logonew2.png" alt="CTC to Salary Calculator" style="height: 60px;">   
+    <img id="logo-img" src="Newlogo4.png" alt="CTC to Salary Calculator">   
   </h1>
-      <p class="custom-lead">Use our powerful Salary calculator, Income tax calculator, PF/gratuity calculator, and loan calculator to calculate your net in hand salary, income tax and more.</p>
+ <p class="custom-lead">Use our powerful Salary calculator, Income tax calculator, PF/gratuity calculator, and loan calculator to calculate your net in hand salary, income tax and more.</p>
 
       <div class="tabs nav nav-tabs">
         <div class="tab-button dropdown active" id="salaryDropdown">Salary
@@ -339,10 +449,10 @@
             <tr><td>Basic % of CTC</td><td><input type="number" id="basicPercent" value="40" min="20" max="70" class="form-control"></td></tr>
           </table>
         </div>
-        <button class="action btn btn-success" onclick="calcSalary()">Calculate My Salary</button>
+        <button class="action btn btn-primary" onclick="calcSalary()">Calculate My Salary</button>
         <div id="salResult" class="mt-4"></div>
 
-        <div class="info-box alert alert-success mt-4">
+        <div class="info-box alert alert-primary mt-4">
           <h3 class="alert-heading">Understanding Salary Structure in India</h3>
           <p>Your <b>Cost to Company (CTC)</b> includes various salary components that determine your take-home salary and <b>income tax</b> obligations. Use our <b>CTC calculator</b> and <b>salary calculator</b> to break down each part of your salary and <b>calculate tax</b> accurately for FY 2025-26.</p>
           
@@ -375,10 +485,10 @@
             <tr><td>Basic % of Gross</td><td><input type="number" id="empBasicPercent" value="40" min="20" max="70" class="form-control"></td></tr>
           </table>
         </div>
-        <button class="action btn btn-success" onclick="calcEmployer()">Calculate CTC</button>
+        <button class="action btn btn-primary" onclick="calcEmployer()">Calculate CTC</button>
         <div id="empResult" class="mt-4"></div>
 
-        <div class="info-box alert alert-success mt-4">
+        <div class="info-box alert alert-primary mt-4">
           <h3 class="alert-heading">Employer Compliance Requirements in India</h3>
           <p>Structuring salaries requires compliance with statutory components to optimize <b>tax in India</b> and employee benefits.</p>
           
@@ -417,10 +527,10 @@
             <tr><td>Tax Regime</td><td><select id="taxRegime" class="form-select"><option value="new">New</option><option value="old">Old</option></select></td></tr>
           </table>
         </div>
-        <button class="action btn btn-success" onclick="calcIncomeTax()">Compute Tax</button>
+        <button class="action btn btn-primary" onclick="calcIncomeTax()">Compute Tax</button>
         <div id="taxResult" class="mt-4"></div>
 
-        <div class="info-box alert alert-success mt-4">
+        <div class="info-box alert alert-primary mt-4">
           <h3 class="alert-heading">Income Tax Slabs and Rules FY 2025-26</h3>
           <p>India offers two tax regimes with different deduction options. Choose wisely based on your investments and expenses:</p>
           
@@ -461,10 +571,10 @@
             <tr><td>Annual PF interest %</td><td><input type="number" id="pfRate" value=" fetchBalance() * 0.0825" step="0.1" class="form-control"></td></tr>
           </table>
         </div>
-        <button class="action btn btn-success" onclick="calcPF()">Project My Benefits</button>
+        <button class="action btn btn-primary" onclick="calcPF()">Project My Benefits</button>
         <div id="pfResult" class="mt-4"></div>
 
-        <div class="info-box alert alert-success mt-4">
+        <div class="info-box alert alert-primary mt-4">
           <h3 class="alert-heading">EPF and Gratuity Rules in India</h3>
          <p>Use our <b>calculator PF</b> and <b>calculator gratuity</b> to <b>calculate EPF</b> and gratuity benefits with the latest <b>PF interest rate</b> of 8.25% for FY 2025-26.</p>
           
@@ -503,10 +613,10 @@
             <tr><td>Metro city?</td><td><select id="isMetro" class="form-select"><option value="yes">Yes (Delhi/Mumbai/Kolkata/Chennai)</option><option value="no" selected>No</option></select></td></tr>
           </table>
         </div>
-        <button class="action btn btn-success" onclick="calcHRA()">Calculate HRA Exemption</button>
+        <button class="action btn btn-primary" onclick="calcHRA()">Calculate HRA Exemption</button>
         <div id="hraResult" class="mt-4"></div>
 
-        <div class="info-box alert alert-success mt-4">
+        <div class="info-box alert alert-primary mt-4">
           <h3 class="alert-heading">HRA Exemption Rules and Tax Benefits</h3>
                         <p>Maximize your <b>HRA tax exemption</b> with our <b>HRA exemption calculator</b> and <b>HRA rebate calculator</b> for accurate <b>HRA calculation</b>.</p>
           <p>House Rent Allowance (HRA) provides significant tax savings for salaried individuals in India. Here's everything you need to know:</p>
@@ -547,10 +657,10 @@
             <tr><td>Pension Factor</td><td><input type="number" id="pensFactor" value="1" step="0.01" class="form-control"></td></tr>
           </table>
         </div>
-        <button class="action btn btn-success" onclick="calcPension()">Calculate My Pension</button>
+        <button class="action btn btn-primary" onclick="calcPension()">Calculate My Pension</button>
         <div id="pensResult" class="mt-4"></div>
 
-        <div class="info-box alert alert-success mt-4">
+        <div class="info-box alert alert-primary mt-4">
           <h3 class="alert-heading">Pension Options for Indian Employees</h3>
           <p>Employees in India can benefit from multiple pension schemes. Understand your options for retirement planning:</p>
           
@@ -591,11 +701,11 @@
             <tr><td>Loan Tenure (years)</td><td><input type="number" id="loanTenure" placeholder="e.g. 20" class="form-control"></td></tr>
           </table>
         </div>
-        <button class="action btn btn-success" onclick="calculateEMI()">Calculate EMI</button>
+        <button class="action btn btn-primary" onclick="calculateEMI()">Calculate EMI</button>
         <div id="emiResult" class="mt-4"></div>
         <div id="emiBreakup" class="emi-breakup table-responsive"></div>
 
-        <div class="info-box alert alert-success mt-4">
+        <div class="info-box alert alert-primary mt-4">
           <h3 class="alert-heading">Understanding Loan EMIs in India</h3>
                         <p>Use our <b>loan EMI calculator</b> to compute affordable EMIs and plan <b>tax exemptions</b> on home loan interest.</p>
           <p>Equated Monthly Installments (EMIs) are fixed payments made by borrowers to lenders at specified dates. Here's how they work:</p>
@@ -646,10 +756,10 @@
                 </select></td></tr>
           </table>
         </div>
-        <button class="action btn btn-success" onclick="calculatePrepayment()">Calculate Savings</button>
+        <button class="action btn btn-primary" onclick="calculatePrepayment()">Calculate Savings</button>
         <div id="prepayResult" class="mt-4"></div>
 
-        <div class="info-box alert alert-success mt-4">
+        <div class="info-box alert alert-primary mt-4">
           <h3 class="alert-heading">Loan Prepayment Benefits and Rules in India</h3>
                         <p>Save on interest with our <b>loan prepayment calculator</b> to optimize your loan repayment strategy.</p>
 
