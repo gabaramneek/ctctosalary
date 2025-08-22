@@ -1,0 +1,124 @@
+/* Base colors and fonts */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  color: #2c3e50;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styling */
+nav.nav-tabs {
+  position: relative;
+  white-space: nowrap; /* Prevent wrapping */
+  /overflow-x: hidden !important;/    /* Allow horizontal scroll if needed */
+  padding-left: 110px; /* Space for the logo */
+  background: linear-gradient(45deg, #5b86e5, #36d1dc);
+  border-bottom: 3px solid #2c3e50;
+}
+
+nav.nav-tabs .logo-container {
+  position: absolute;
+  left: 600px;
+  top: 60px;
+  height: 120px;
+  width: auto;
+}
+
+nav.nav-tabs .logo-container img {
+  height: 120px;
+  width: auto;
+  display: block;
+ border: 1px solid black; /* thin black border */
+  border-radius: 4px; 
+}
+
+nav.nav-tabs .nav-link {
+  color: white;
+  font-weight: 600;
+  display: inline-block;
+  white-space: nowrap; /* Prevent wrapping inside links */
+  margin-left: 5rem;
+  padding: 0.5rem 0.1rem;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Add margin to all links EXCEPT the first one */
+nav.nav-tabs .nav-link + .nav-link {
+    margin-left: 1.5rem; /* Adjust this value to control spacing between links */
+}
+
+nav.nav-tabs .nav-link:hover,
+nav.nav-tabs .nav-link:focus,
+nav.nav-tabs .nav-link.active {
+  background-color: #2c3e50;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Container styling */
+.container {
+  max-width: 2000px;
+  margin: 150px auto;
+  padding: 1rem 1rem 3rem;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+/* Headings */
+h1, h2 {
+  color: #34495e;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #5b86e5;
+  color: white;
+  text-align: left;
+}
+
+/* Form styling */
+form label {
+  font-weight: 600;
+}
+
+form input,
+form select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #36d1dc;
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover,
+form button:focus {
+  background-color: #2c3e50;
+  outline: none;
+}
+
