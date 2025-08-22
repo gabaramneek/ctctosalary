@@ -19,7 +19,7 @@ nav.nav-tabs {
 
 nav.nav-tabs .logo-container {
   position: absolute;
-  left: 600px;
+  left: 550px;
   top: 60px;
   height: 120px;
   width: auto;
@@ -121,4 +121,5 @@ form button:focus {
   background-color: #2c3e50;
   outline: none;
 }
+
 
